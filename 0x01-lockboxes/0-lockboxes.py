@@ -6,7 +6,7 @@ Lockboxes
 
 def canUnlockAll(boxes):
     """
-    #Returns true or false
+    Returns True if all boxes can be opened, else returns False.
     """
     opened = set()
     queue = [0]
@@ -15,9 +15,9 @@ def canUnlockAll(boxes):
         current = queue.pop(0)
         opened.add(current)
 
-        unopened_keys = set(boxes[current]) - opened
-        valid_keys = [key for key in unopened_keys if key < len(boxes)]
-        
+        unseen_boxes = set(boxes[current]) - opened
+        valid_keys = [key for key in unseen_boxes if 0 <= key < len(boxes)]
+
         queue.extend(valid_keys)
-    
+
     return len(opened) == len(boxes)
