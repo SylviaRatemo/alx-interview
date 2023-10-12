@@ -6,14 +6,20 @@
 def minOperations(n):
     '''return the least number of operations
     '''
-    if n == 1:
+    if not isinstance(n, int) or n <= 0:
         return 0
-    op = [float('inf')] * (n+1)
-    op[1] = 0
 
-    for i in range(2, n+1):
-        for j in range(1, i // 2 + 1):
-            if i%j == 0:
-                op[i] = min(op[i], op[j] + (i // j))
-    return op[n] if op[n] != float('inf') else 0
-    
+    ops_count = 0
+    clipboard = 1
+    done = 1
+
+    while done < n:
+        if n - done > 0 and (n - done) % done == 0:
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+        else:
+            done += clipboard
+            ops_count += 1
+
+    return ops_count
