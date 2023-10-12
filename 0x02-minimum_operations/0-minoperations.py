@@ -16,3 +16,4 @@ def minOperations(n):
             if i%j == 0:
                 op[i] = min(op[i], op[j] + (i // j))
     return op[n] if op[n] != float('inf') else 0
+    
