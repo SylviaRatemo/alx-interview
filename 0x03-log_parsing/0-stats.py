@@ -45,6 +45,7 @@ def main():
         '''Handle KeyboardInterrupt (CTRL + C)
         '''
         print_metrics(metrics)
+        sys.stderr.write("KeyboardInterrupt\n")
         sys.exit(0)
 
 
