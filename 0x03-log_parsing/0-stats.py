@@ -21,7 +21,7 @@ def process_line(line, metrics):
 
 
 def print_metrics(metrics):
-    print(f"Total file size: {metrics['total_size']}")
+    print(f"File size: {metrics['total_size']}")
 
     for code in sorted(metrics['status_codes']):
         count = metrics['status_codes'][code]
