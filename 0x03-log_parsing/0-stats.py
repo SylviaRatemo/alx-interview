@@ -7,6 +7,7 @@ STATUS_CODES = {"200", "301", "400", "401", "403", "404", "405", "500"}
 stats = {code: 0 for code in STATUS_CODES}
 total_size = 0
 
+
 def print_stats():
     """
     Function that prints stats about log
@@ -15,6 +16,7 @@ def print_stats():
     for code, count in sorted(stats.items()):
         if count > 0:
             print(f'{code}: {count}')
+
 
 if __name__ == "__main__":
     line_count = 0
