@@ -16,8 +16,8 @@ def process_line(line, metrics):
     match = pattern.match(line)
     if match:
         ip_address, status_code, file_size = match.groups()
-        valid_status_codes = {'200', '301', '400', '401', '403', '404', '405', '500'}
-        if status_code in valid_status_codes:
+        valid = {'200', '301', '400', '401', '403', '404', '405', '500'}
+        if status_code in valid:
             metrics['total_size'] += int(file_size)
             metrics['status_codes'][status_code] += 1
 
