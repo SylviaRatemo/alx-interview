@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+'''Log Parsing
+'''
 import sys
 import re
 from collections import defaultdict
@@ -40,7 +42,8 @@ def main():
                 print_metrics(metrics)
 
     except KeyboardInterrupt:
-        # Handle KeyboardInterrupt (CTRL + C)
+        '''Handle KeyboardInterrupt (CTRL + C)
+        '''
         print_metrics(metrics)
         sys.exit(0)
 
