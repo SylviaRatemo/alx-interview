@@ -1,28 +1,34 @@
 #!/usr/bin/python3
-"""
-Method that determines if a given data set represents a valid UTF-8 encoding.
+""" UTF-8 Validation
 """
 
 
 def validUTF8(data):
-    """ UTF-8 Validation """
-    bytesLong = 0
-    binaryMoveLeft7 = 1 << 7
-    binaryMoveLeft6 = 1 << 6
-    for byte in data:
-        binaryMove = 1 << 7
-        if bytesLong == 0:
-            while byte & binaryMove:
-                bytesLong += 1
-                binaryMove = binaryMove >> 1
-            if bytesLong == 0:
-                continue
-            if bytesLong == 1 or bytesLong > 4:
-                return False
+    masks = [128, 64, 32, 16, 8]
+
+    def getType(num):
+        for i in range(5):
+            if (masks[i] & num) == 0:
+                return i
+        return -1
+
+    length = len(data)
+
+    i = 0
+    while i < length:
+        curr = data[i]
+        type = getType(curr)
+
+        if type == 0:
+            i += 1
+        elif type > 1 and i + type <= length:
+            i += 1
+            while type > 1:
+                if getType(data[i]) != 1:
+                    return False
+                i += 1
+                type -= 1
         else:
-            if not (byte & binaryMoveLeft7 and not (byte & binaryMoveLeft6)):
-                return False
-        bytesLong -= 1
-    if bytesLong == 0:
-        return True
-    return False
+            return False
+
+    return True
