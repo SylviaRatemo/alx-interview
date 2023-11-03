@@ -42,7 +42,7 @@ def nqueens(n):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: ./0-nqueens.py N")
+        print("Usage: nqueens.py N")
         sys.exit(1)
 
     nqueens(sys.argv[1])
