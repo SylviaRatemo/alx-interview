@@ -28,12 +28,12 @@ def solve_nqueens(board, row, n):
 
 def nqueens(n):
     if not n.isdigit():
-        print("N must be a number")
+        print("N must be a number\n")
         sys.exit(1)
 
     n = int(n)
     if n < 4:
-        print("N must be at least 4")
+        print("N must be at least 4\n")
         sys.exit(1)
 
     board = [-1] * n
