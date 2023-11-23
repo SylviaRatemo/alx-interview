@@ -17,7 +17,7 @@ def makeChange(coins, total):
       If total is 0 or less, returns 0. If total cannot be met, returns -1.
     """
     if total <= 0:
-        return o
+        return 0
 
     dp = [float('inf')] * (total + 1)
 
