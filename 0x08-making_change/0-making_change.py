@@ -7,14 +7,6 @@ Making Changes
 def makeChange(coins, total):
     """
     Find the fewest number of coins needed to meet a given amount total.
-
-    Parameters:
-    - coins (List[int]): List of coin values.
-    - total (int): The target total amount.
-
-    Returns:
-    - Union[int, List[int]]: The fewest number of coins needed to meet the total.
-      If total is 0 or less, returns 0. If total cannot be met, returns -1.
     """
     if total <= 0:
         return 0
