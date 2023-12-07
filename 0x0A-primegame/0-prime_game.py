@@ -9,45 +9,41 @@ isWinner function
 def isWinner(x, nums):
     """Prime Game
     """
-    
-    def is_prime(num):
-        """Check if a number is prime."""
-        if num < 2:
-            return False
-        for i in range(2, int(num**0.5) + 1):
-            if num % i == 0:
-                return False
-        return True
-
-    def get_available_moves(numbers):
-        """Get a list of available prime numbers from the given set."""
-        return [num for num in numbers if is_prime(num)]
-
-    def play_game(numbers):
-        """Simulate the game and return the winner."""
-        current_player = "Maria"
-        while True:
-            available_moves = get_available_moves(numbers)
-            if not available_moves:
-                return current_player  # No more moves, current player wins
-            selected_move = min(available_moves)
-            numbers = [num for num in numbers if num % selected_move != 0]
-            current_player = "Maria" if current_player == "Ben" else "Ben"
-
-    # Count the number of wins for each player
-    maria_wins = 0
-    ben_wins = 0
-
-    for n in nums:
-        winner = play_game(list(range(1, n + 1)))
-        if winner == "Maria":
-            maria_wins += 1
-        elif winner == "Ben":
-            ben_wins += 1
-
-    if maria_wins > ben_wins:
-        return "Maria"
-    elif ben_wins > maria_wins:
-        return "Ben"
-    else:
+    # Check for invalid inputs
+    if not nums or x < 1:
         return None
+    
+    # Find the maximum number in the input list
+    n = max(nums)
+    
+    # Initialize a filter list for prime numbers
+    fltr = [True for _ in range(max(n + 1, 2))]
+    
+    # Use the Sieve of Eratosthenes to mark non-prime numbers
+    for i in range(2, int(pow(n, 0.5)) + 1):
+        if not fltr[i]:
+            continue
+        for j in range(i * i, n + 1, i):
+            fltr[j] = False
+    
+    # Mark 0 and 1 as non-prime
+    fltr[0] = fltr[1] = False
+    
+    # Modify the filter list to store cumulative count of primes
+    c = 0
+    for i in range(len(fltr)):
+        if fltr[i]:
+            c += 1
+        fltr[i] = c
+    
+    # Count the number of rounds where Maria selects an odd count of prime numbers
+    plyr1 = 0
+    for n in nums:
+        plyr1 += fltr[n] % 2 == 1
+    
+    # Determine the winner based on the conditions
+    if plyr1 * 2 == len(nums):
+        return None
+    if plyr1 * 2 > len(nums):
+        return "Maria"
+    return "Ben"
