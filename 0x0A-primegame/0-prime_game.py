@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 isWinner function
     : Ben or Maria
@@ -8,7 +9,7 @@ isWinner function
 def isWinner(x, nums):
     """Prime Game
     """
-
+    
     def is_prime(num):
         """Check if a number is prime."""
         if num < 2:
